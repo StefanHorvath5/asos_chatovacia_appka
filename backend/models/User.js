@@ -11,10 +11,17 @@ const UserSchema = new mongoose.Schema(
     },
     hash: String,
     salt: String,
- },
+   groupsAdmin: [{ type: mongoose.Schema.Types.ObjectId, ref: "Group" }],
+  },
   {
     toJSON: { virtuals: true },
   }
 );
+
+UserSchema.virtual("groups", {
+  ref: "UserGroup",
+  localField: "_id",
+  foreignField: "userId",
+});
 
 module.exports = mongoose.model("User", UserSchema);
