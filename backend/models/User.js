@@ -24,4 +24,9 @@ UserSchema.virtual("groups", {
   foreignField: "userId",
 });
 
+UserSchema.virtual("channels", {
+  ref: "UserChannel",
+  localField: "_id",
+  foreignField: "userId",
+});
 module.exports = mongoose.model("User", UserSchema);
