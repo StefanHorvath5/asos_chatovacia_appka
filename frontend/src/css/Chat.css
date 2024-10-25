@@ -1,0 +1,108 @@
+.chatContainer {
+  display: flex;
+  height: 100%;
+}
+.groupNav {
+  color: white;
+  background-color: #202225;
+  position: relative;
+  min-width: 72px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+  height: 100%;
+  overflow: auto;
+}
+.channelsNav {
+  background-color: #2f3136;
+  min-width: 240px;
+  color: #8e9297;
+  overflow: auto;
+}
+
+.chattingTopNav {
+  /* cursor: pointer; */
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+  min-height: 48px;
+  font-weight: 500;
+  box-shadow: 0 1px 0 rgba(4, 4, 5, 0.2), 0 1.5px 0 rgba(6, 6, 7, 0.05),
+    0 2px 0 rgba(4, 4, 5, 0.05);
+  font-size: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.chattingTopNavRight {
+  justify-content: flex-end;
+  display: flex;
+  height: 32px;
+  align-items: center;
+}
+.chattingTopNavRightSearch {
+  padding-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+}
+.searchInputContainer {
+  padding-right: 5px;
+  height: 32px;
+}
+.searchInputContainer input {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #1c1b1b75;
+  border: 1px solid #888787;
+  color: white;
+}
+
+.chattingSection {
+  background-color: #36393f;
+  color: #dcddde;
+  display: flex;
+  flex: 1 1 auto;
+  width: 40%;
+  flex-direction: column;
+}
+
+.infoSectionDiv {
+  /* min-width: 240px;
+  background-color: #202225;
+  display: flex; */
+  max-width: 240px;
+  background-color: #202225;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+.showAbsoluteSideBar {
+  position: absolute;
+  z-index: 3;
+  height: 100%;
+}
+.leftSidebar {
+  left: 0;
+}
+.rightSidebar {
+  right: 0;
+}
+.hideTopNavDiv {
+  display: flex;
+  padding: 14px 5px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(4, 4, 5, 0.2), 0 1.5px 0 rgba(6, 6, 7, 0.05),
+    0 2px 0 rgba(4, 4, 5, 0.05);
+}
+.hideTopNavDiv:hover {
+  color: white;
+}
+.hideTopNavDivLeft {
+  justify-content: flex-end;
+}
+.hideTopNavDivRight {
+  justify-content: flex-start;
+}

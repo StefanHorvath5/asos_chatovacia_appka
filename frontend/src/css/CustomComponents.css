@@ -1,0 +1,65 @@
+/* custom link */
+.customLink {
+  color: #b9bbbe;
+  text-decoration: none;
+}
+.customLink:hover {
+  color: #fff;
+}
+
+/* modal container */
+.modalContainer {
+  background-color: #202225;
+  color: #fff;
+  box-shadow: 5px 5px 5px 5px #202225;
+  position: absolute;
+  z-index: 1005;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 100px;
+  width: 40%;
+  min-width: 300px;
+  border-radius: 10px;
+  visibility: visible;
+  pointer-events: visible;
+}
+
+/* modal navigation */
+.modalNav {
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  font-size: 25px;
+  padding: 5px;
+  padding-bottom: 25px;
+}
+
+/* modal content */
+.modalContent {
+  padding: 20px;
+}
+
+/* modal buttons */
+.modalButtons {
+  margin-top: 15px;
+}
+.modalButtons button {
+  margin-right: 5px;
+}
+
+/* input container */
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
+}
+.inputContainer label {
+  color: #72767d;
+}
+.inputContainer input {
+  width: 250px;
+  padding: 5px;
+  border-radius: 5px;
+}
