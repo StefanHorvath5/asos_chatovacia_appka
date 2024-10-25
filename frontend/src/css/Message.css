@@ -1,0 +1,144 @@
+.messageTitleContainer {
+  display: flex;
+  border-top: 1px solid rgba(0, 0, 0, 0.116);
+  margin-top: 10px;
+}
+
+.parentMessageContainer {
+  padding: 5px;
+  margin-top: 3px;
+  padding-left: 30px;
+  opacity: 0.6;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none; /**/
+}
+.parentMessageContainer::before {
+  content: "";
+  display: block;
+  position: absolute;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  top: 10px;
+  right: 100%;
+  bottom: 0;
+  left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  border-left: 1px solid rgba(255, 255, 255, 0.534);
+  border-top: 1px solid rgba(255, 255, 255, 0.534);
+  border-top-left-radius: 5px;
+  width: 15px;
+}
+
+.authorName {
+  display: inline-flex;
+}
+
+.messageContentContainer {
+  cursor: pointer;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+}
+.messageContentWithReplyContainer {
+  cursor: pointer;
+  padding-bottom: 1px;
+  display: flex;
+  justify-content: space-between;
+  /* padding-left: 5px; */
+  border-top: 1px solid rgba(0, 0, 0, 0.116);
+  margin-top: 5px;
+  padding-top: 0px;
+}
+.messageContentContainer:hover,
+.messageContentWithReplyContainer:hover {
+  background-color: rgba(0, 0, 0, 0.116);
+  border-radius: 5px;
+}
+
+.messageContent {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.messageContentDate {
+  min-width: 50px;
+  font-size: 11px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 7px;
+  align-items: center;
+}
+
+.editTextContent {
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.editMessageText {
+  height: 30px;
+  width: 100%;
+  background-color: inherit;
+  border: 1px solid white;
+  border-radius: 10px;
+  outline: none;
+  color: white;
+  padding: 0 5px;
+}
+
+.messageButtonsContainer {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  right: 50px;
+  top: -20px;
+  box-shadow: 0 0 0 1px rgba(4, 4, 5, 0.15);
+  border-radius: 4px;
+  height: 32px;
+  background-color: #36393f;
+  align-items: center;
+}
+.messageButtonsContainerClicked {
+  display: flex;
+  pointer-events: all;
+}
+.messageButton {
+  background-color: inherit;
+  border: none;
+  color: white;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.messageContentContainer:hover > .messageButtonsContainer,
+.messageContentWithReplyContainer:hover > .messageButtonsContainer {
+  display: flex;
+}
+.messageButton:hover {
+  background-color: #424549;
+}
+
+.messageEmojiReactionsBox {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  z-index: 3;
+  right: 10px;
+  top: -155px;
+  box-shadow: 0 0 0 1px rgba(4, 4, 5, 0.15);
+  border-radius: 8px;
+  background-color: #36393f;
+}
+
+.messageClicked {
+  background-color: rgba(0, 0, 0, 0.116);
+  border-radius: 5px;
+}

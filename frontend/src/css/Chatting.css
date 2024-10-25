@@ -1,0 +1,31 @@
+.chattingContainer {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  overflow: auto;
+}
+
+.loadOlderDiv,
+.chattingMessageInput,
+.chattingMessagesDivScroll {
+  width: 100%;
+}
+.chattingMessagesDivScroll {
+  overflow: auto;
+  height: 100%;
+}
+
+.loadOlderDiv {
+  cursor: pointer;
+}
+/* .followButton {
+  background-color: red;
+} */
+.chattingUl {
+  padding: 5px 12px 5px 5px;
+}
+
+
+

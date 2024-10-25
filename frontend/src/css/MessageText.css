@@ -1,0 +1,18 @@
+/* .textContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+} */
+
+/* .textDate {
+  min-width: 100px;
+  font-size: 11px;
+} */
+.textContent {
+  max-width: 80%;
+
+  word-wrap: break-word;
+}
+.textLink {
+  color: rgb(0, 183, 255);
+}

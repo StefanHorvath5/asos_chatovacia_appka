@@ -1,0 +1,101 @@
+.typingDiv {
+  background-color: #2f3136;
+  height: 20px;
+  border-radius: 5px;
+}
+.inputBoxContainer {
+  background-color: #2f3136;
+  height: 90px;
+  border-radius: 10px;
+  margin: 0 1% 10px 1%;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.listInputMessageFiles {
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 2.5%;
+  width: 95%;
+  overflow: hidden;
+  flex-wrap: wrap;
+  white-space: nowrap;
+}
+
+.listInputMessageFile {
+  display: inline-flex;
+  font-size: 12px;
+  padding: 0 4px;
+}
+.inputAndSendContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.inputMessageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.397);
+  border-radius: 10px;
+  margin: 0 0 0 10px;
+}
+
+.inputMessageContainer:focus-within {
+  border: 1px solid white;
+}
+.inputMessageText {
+  height: 30px;
+  width: 100%;
+  background-color: inherit;
+  border: none;
+  outline: none;
+  color: white;
+}
+.inputMessageFile,
+.inputEmoji {
+  height: 30px;
+  width: 30px;
+  border: none;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.inputMessageFile:hover,
+.inputEmoji:hover {
+  background-color: rgb(82, 82, 82);
+  border-radius: 50%;
+}
+
+.emojiBox {
+  width: 200px;
+  height: 150px;
+  position: absolute;
+  z-index: 3;
+  right: 10px;
+  top: -155px;
+  box-shadow: 0 0 0 1px rgba(4, 4, 5, 0.15);
+  border-radius: 8px;
+  background-color: #36393f;
+}
+.sendMessageContainer {
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sendMessageButton {
+  background-color: inherit;
+  border: none;
+  font-size: 17px;
+  padding-bottom: 6px;
+}

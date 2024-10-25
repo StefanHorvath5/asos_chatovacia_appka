@@ -1,0 +1,28 @@
+.aMessage {
+  color: rgb(0, 60, 255);
+  /*  */
+  display: inline;
+}
+.emojiReactionsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.emojiReactionDiv {
+  margin: 5px;
+  display: flex;
+  background-color: #2f3136;
+  padding: 3px 6px;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.emojiReactionDiv:hover {
+  background-color: #383a3f;
+}
+.emojiReactionCount {
+  color: white;
+  padding-left: 5px;
+}
+
+/* 
+  background-color: #383a3f; */
