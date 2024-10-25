@@ -1,0 +1,22 @@
+* {
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.appContainer {
+  min-width: 320px;
+  height: 100%;
+}
+
+button {
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+.actionIcon {
+  cursor: pointer;
+}
