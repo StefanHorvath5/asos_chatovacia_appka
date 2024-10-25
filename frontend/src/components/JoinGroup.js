@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
 import { addToGroup, getGroupById } from "../actions/groups";
-
+import { useParams } from 'react-router-dom';
 import Header from "./Header";
 
-const JoinGroup = ({ match, addToGroup, getGroupById }) => {
+const JoinGroup = ({ addToGroup, getGroupById }) => {
   const navigate = useNavigate();
-  const gId = match.params.gId;
+
+  const { gId } = useParams(); 
   const [groupToJoin, setGroupToJoin] = useState(null);
 
   useEffect(() => {
