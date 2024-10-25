@@ -2,9 +2,10 @@ const User = require("../models/User");
 const utils = require("../lib/utils");
 const { asyncWrapper } = require("../middleware/async");
 const { createCustomError } = require("../errors/customError");
+const { getUserWithGroups } = require("../mongoAggregates/users");
 
 const getUser = asyncWrapper(async (req, res, next) => {
-    let user = await User.findOne({ username: res.user.username });
+    let user = (await getUserWithGroups(res.user.username))[0];
     if (!user) {
         return next(createCustomError(`You have been logged out 1`, 401));
     }
@@ -19,8 +20,8 @@ const getUser = asyncWrapper(async (req, res, next) => {
 });
 
 const login = asyncWrapper(async (req, res, next) => {
-    let user = await User.findOne({ username: req.body.username });
-
+    let user = (await getUserWithGroups(req.body.username))[0];
+    
     if (!user) {
         return next(createCustomError(`Incorrect credentials 1`, 401));
     }
@@ -56,7 +57,7 @@ const register = asyncWrapper(async (req, res, next) => {
     res.status(200).json({
         success: true,
         token: jwt.token,
-        user: user,
+        user: {...user, groups:[]},
         expiresIn: jwt.expires,
     });
 });

@@ -4,12 +4,8 @@ const { authMiddleware } = require("./middleware/authMiddleware");
 const {
     addMessage,
     getMessages,
-    changeUserGroupColor,
     addReactionToMessage,
 } = require("./socketActions/messages");
-const {
-    getAndSendAllActiveInGroup,
-} = require("./socketActions/rooms");
 
 const { getGroups } = require("./mongoAggregates/groups");
 
@@ -115,15 +111,8 @@ module.exports.sockets = (httpServer) => {
 
             await socket.join(channelId);
             socket.data.channelOldId = channelId;
-            await readMessage(socket, channelId);
             callback();
         });
 
-        socket.on("disconnect", async () => {
-            const groups = await getGroups(socket.data.user._id);
-            groups.forEach(async (g) => {
-                getAndSendAllActiveInGroup(io, g.group._id.toString());
-            });
-        });
     });
 };

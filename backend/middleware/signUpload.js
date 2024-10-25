@@ -8,7 +8,7 @@ const signuploadform = () => {
     const signature = cloudinary.utils.api_sign_request(
         {
             timestamp: timestamp,
-            folder: "asos_chat_app",
+            folder: "asos",
         },
         apiSecret
     );

@@ -31,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use(require("./routes"));
+require("./socketLogic").sockets(httpServer);
 
 app.use(errorHandlerMiddleware);
 
