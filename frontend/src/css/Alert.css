@@ -1,0 +1,15 @@
+.alertContainer {
+  position: absolute;
+  z-index: 5;
+  bottom: 10px;
+  left: 10px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+.removeAlertButton {
+    padding-left: 30px;
+    cursor: pointer;
+}
