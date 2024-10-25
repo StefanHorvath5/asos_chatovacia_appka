@@ -1,0 +1,27 @@
+.groupModalNavDiv {
+  width: 50%;
+  cursor: pointer;
+}
+#addToGroupColor {
+  width: 80px;
+  height: 30px;
+}
+.modalButton {
+  padding: 6px 12px;
+  border-radius: 3px;
+  border: none;
+  font-weight: 500;
+}
+
+.submitButton {
+  background-color: blue;
+  color: white;
+}
+.changeButton {
+  background-color: orange;
+  color: white;
+}
+.deleteButton {
+  background-color: red;
+  color: white;
+}

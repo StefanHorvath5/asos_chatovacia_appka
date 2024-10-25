@@ -1,0 +1,82 @@
+.infoContainer {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.infoCollapsesContainer,
+.infoOneCollapseGrow {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+.infoCollapsesContainer,
+.infoOneCollapseGrow {
+  overflow: auto;
+}
+.normalActive {
+  /* cursor: pointer; */
+  padding: 5px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+.activeDot {
+  font-size: 25px;
+  color: #09ff00;
+  padding-right: 10px;
+}
+
+.collapseNavigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  min-height: 32px;
+  font-weight: 500;
+  box-shadow: 0 1px 0 rgba(135, 135, 145, 0.14), 0 1.5px 0 rgba(6, 6, 7, 0.05),
+    0 2px 0 rgba(89, 89, 97, 0.05);
+  cursor: pointer;
+}
+.infoContainer div:not(:first-child) .collapseNavigation {
+  border-top: 1px solid #ffffff17;
+}
+
+.collapseContent,
+.collapseContent > div,
+.collapseContent > div > div{
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow: auto;
+}
+.collapseContentUl {
+  margin-left: 40px;
+  background-color: rgba(100, 100, 100, 0.04);
+}
+
+.infoNameSpan {
+  max-width: 160px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.infoButtonContainer {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.infoButton {
+  background-color: inherit;
+  border: none;
+  color: white;
+  padding: 8px 80px;
+  font-size: 16px;
+  border: 1px solid #4f4e517d;
+  border-radius: 5px;
+}
+.infoButton:hover {
+  background-color: rgba(59, 59, 60, 0.24);
+}
