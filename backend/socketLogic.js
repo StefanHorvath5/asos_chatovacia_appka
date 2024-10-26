@@ -72,12 +72,10 @@ module.exports.sockets = (httpServer) => {
         socket.on(
             "getMessages",
             async (channelId, numberOfMessages) => {
-                console.log("tu1", numberOfMessages)
                 const messages = await getMessages(
                     channelId,
                     numberOfMessages
                 );
-                console.log("tu2")
                 socket.emit("allMessages", messages);
             }
         );

@@ -48,7 +48,6 @@ const Register = ({ isAuthenticated, register }) => {
           <button
             disabled={!username || !password}
             onClick={() => {
-              console.log(username, password)
               register(username, password);
             }}
           >

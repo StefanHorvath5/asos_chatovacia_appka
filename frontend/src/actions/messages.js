@@ -29,7 +29,6 @@ export const getMessages =
     if (type === "loadOlder") {
       numberOfMessages += 20;
     }
-    console.log("1", numberOfMessages)
     socket.emit(
       "getMessages",
       channelId,
@@ -55,14 +54,12 @@ const sendFileMessages = async (
       signData,
       fileMessages[i]
     );
-    console.log(url, data)
     try {
       let data1 = await fetch(url, {
         method: "POST",
         body: data,
       });
       let newData1 = await data1.json();
-      console.log(newData1)
       newData1.actual_filename = fileMessages[i].name;
       responses = [...responses, newData1];
     } catch (error) {
@@ -87,7 +84,6 @@ export const sendMessage =
           tokenConfig(getState)
         );
         const signData = await signResponse.json();
-        console.log(signData)
         let responses = await sendFileMessages(
           fileMessages,
           signData,

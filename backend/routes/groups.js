@@ -5,8 +5,7 @@ const {
   createGroup,
   getAllGroups,
   addToGroup,
-  getGroupById,
-  createEmoji
+  getGroupById
 } = require("../controllers/groups");
 
 const {

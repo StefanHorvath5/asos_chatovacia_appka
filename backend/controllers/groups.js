@@ -80,7 +80,6 @@ const addToGroup = asyncWrapper(async (req, res, next) => {
 
 const getGroupById = async (req, res, next) => {
   try {
-    console.log(req.params.id)
     const group = await Group.findById(req.params.id);
     if (!group) {
       return next(createCustomError(`No such group 5`, 400));

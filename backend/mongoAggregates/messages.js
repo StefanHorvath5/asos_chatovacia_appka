@@ -6,7 +6,6 @@ const MessageFile = require("../models/MessageFile");
 const EmojiReaction = require("../models/EmojiReaction");
 
 const getMessagesAggregate = async (channelId, numberOfMessages) => {
-  console.log(channelId, numberOfMessages)
   return await Message.aggregate([
     { $match: { channel: channelId } },
     {
