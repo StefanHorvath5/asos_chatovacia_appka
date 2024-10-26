@@ -10,9 +10,7 @@ const UserSchema = new mongoose.Schema(
       unique: [true, "That username is already taken"],
     },
     hash: String,
-    salt: String,
-    messages: [{ type: mongoose.Schema.Types.ObjectId, ref: "Message" }],
-    groupsAdmin: [{ type: mongoose.Schema.Types.ObjectId, ref: "Group" }],
+    salt: String
   },
   {
     toJSON: { virtuals: true },

@@ -2,7 +2,6 @@ const User = require("../models/User");
 const Group = require("../models/Group");
 const UserGroup = require("../models/UserGroup");
 const UserChannel = require("../models/UserChannel");
-const Emoji = require("../models/Emoji");
 
 const {asyncWrapper} = require("../middleware/async");
 const { createCustomError } = require("../errors/customError");
@@ -15,11 +14,9 @@ const createGroup = asyncWrapper(async (req, res, next) => {
     return next(createCustomError(`You have been logged out 1`, 401));
   }
   const newGroup = new Group({
-    name: req.body.name,
-    admin: user._id,
+    name: req.body.name
   });
   const group = await newGroup.save();
- user.groupsAdmin.push(group);
   user.save();
  await UserGroup.updateOne(
     { groupId: group._id, userId: user._id },
@@ -58,8 +55,7 @@ const addToGroup = asyncWrapper(async (req, res, next) => {
   await UserGroup.updateOne(
     {
       groupId: group._id,
-      userId: user._id,
-      color: req.body.color || "black",
+      userId: user._id
     },
     {},
     { upsert: true }
@@ -79,33 +75,6 @@ const addToGroup = asyncWrapper(async (req, res, next) => {
   res.status(200).json({
     success: true,
     groups: groups,
-  });
-});
-
-
-const createEmoji = asyncWrapper(async (req, res, next) => {
-  const user = await User.findOne({ _id: res.user._id });
-  if (!user) {
-    return next(createCustomError(`You have been logged out 5`, 401));
-  }
-  const group = await Group.findOne({ _id: req.body.groupId });
-  if (!group) {
-    return next(createCustomError(`No such group 5`, 400));
-  }
-
-  const newEmoji = new Emoji({
-    group: group._id,
-    name: req.body.name,
-    file: req.body.file,
-  });
-  const emj = await newEmoji.save();
-
-  group.emojis.push(emj);
-  group.save();
-
-  res.status(200).json({
-    success: true,
-    // emojis: emojis,
   });
 });
 
@@ -130,6 +99,5 @@ module.exports = {
   createGroup,
   getAllGroups,
   addToGroup,
-  createEmoji,
   getGroupById,
 };

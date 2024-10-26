@@ -6,6 +6,7 @@ const MessageFile = require("../models/MessageFile");
 const EmojiReaction = require("../models/EmojiReaction");
 
 const getMessagesAggregate = async (channelId, numberOfMessages) => {
+  console.log(channelId, numberOfMessages)
   return await Message.aggregate([
     { $match: { channel: channelId } },
     {
@@ -52,89 +53,6 @@ const getMessagesAggregate = async (channelId, numberOfMessages) => {
     },
     {
       $lookup: {
-        from: Message.collection.name,
-        let: { parent: "$parent", groupId: "$chnnel.group" },
-        pipeline: [
-          {
-            $match: {
-              $expr: { $eq: ["$_id", "$$parent"] },
-            },
-          },
-          {
-            $lookup: {
-              from: User.collection.name,
-              localField: "author",
-              foreignField: "_id",
-              as: "author",
-            },
-          },
-          { $unwind: "$author" },
-
-          {
-            $lookup: {
-              from: UserGroup.collection.name,
-              let: { authorId: "$author._id" },
-              pipeline: [
-                {
-                  $match: {
-                    $expr: {
-                      $and: [
-                        { $eq: ["$groupId", "$$groupId"] },
-                        { $eq: ["$userId", "$$authorId"] },
-                      ],
-                    },
-                  },
-                },
-              ],
-              as: "colorUser",
-            },
-          },
-          {
-            $unwind: {
-              path: "$colorUser",
-              preserveNullAndEmptyArrays: true,
-            },
-          },
-          {
-            $lookup: {
-              from: MessageFile.collection.name,
-              localField: "files",
-              foreignField: "_id",
-              as: "files",
-            },
-          },
-          {
-            $lookup: {
-              from: EmojiReaction.collection.name,
-              localField: "emojiReactions",
-              foreignField: "_id",
-              as: "emojiReactions",
-            },
-          },
-
-          {
-            $project: {
-              "author.username": 1,
-              "colorUser.color": 1,
-              text: 1,
-              date: 1,
-              parent: 1,
-              files: 1,
-              emojiReactions: 1,
-            },
-          },
-        ],
-        as: "parent",
-      },
-    },
-    {
-      $unwind: {
-        path: "$parent",
-        preserveNullAndEmptyArrays: true,
-      },
-    },
-    {
-      $lookup: {
         from: MessageFile.collection.name,
         localField: "files",
         foreignField: "_id",
@@ -152,10 +70,8 @@ const getMessagesAggregate = async (channelId, numberOfMessages) => {
     {
       $project: {
         "author.username": 1,
-        "colorUser.color": 1,
         text: 1,
         date: 1,
-        parent: 1,
         files: 1,
         emojiReactions: 1,
       },
@@ -214,88 +130,6 @@ const getMessageAggregate = async (channelId, msgId) => {
     },
     {
       $lookup: {
-        from: Message.collection.name,
-        let: { parent: "$parent", groupId: "$chnnel.group" },
-        pipeline: [
-          {
-            $match: {
-              $expr: { $eq: ["$_id", "$$parent"] },
-            },
-          },
-          {
-            $lookup: {
-              from: User.collection.name,
-              localField: "author",
-              foreignField: "_id",
-              as: "author",
-            },
-          },
-          { $unwind: "$author" },
-
-          {
-            $lookup: {
-              from: UserGroup.collection.name,
-              let: { authorId: "$author._id" },
-              pipeline: [
-                {
-                  $match: {
-                    $expr: {
-                      $and: [
-                        { $eq: ["$groupId", "$$groupId"] },
-                        { $eq: ["$userId", "$$authorId"] },
-                      ],
-                    },
-                  },
-                },
-              ],
-              as: "colorUser",
-            },
-          },
-          {
-            $unwind: {
-              path: "$colorUser",
-              preserveNullAndEmptyArrays: true,
-            },
-          },
-          {
-            $lookup: {
-              from: MessageFile.collection.name,
-              localField: "files",
-              foreignField: "_id",
-              as: "files",
-            },
-          },
-          {
-            $lookup: {
-              from: EmojiReaction.collection.name,
-              localField: "emojiReactions",
-              foreignField: "_id",
-              as: "emojiReactions",
-            },
-          },
-          {
-            $project: {
-              "author.username": 1,
-              "colorUser.color": 1,
-              text: 1,
-              date: 1,
-              parent: 1,
-              files: 1,
-              emojiReactions: 1,
-            },
-          },
-        ],
-        as: "parent",
-      },
-    },
-    {
-      $unwind: {
-        path: "$parent",
-        preserveNullAndEmptyArrays: true,
-      },
-    },
-    {
-      $lookup: {
         from: MessageFile.collection.name,
         localField: "files",
         foreignField: "_id",
@@ -313,10 +147,8 @@ const getMessageAggregate = async (channelId, msgId) => {
     {
       $project: {
         "author.username": 1,
-        "colorUser.color": 1,
         text: 1,
         date: 1,
-        parent: 1,
         files: 1,
         emojiReactions: 1,
       },

@@ -19,19 +19,19 @@ import {
 
 let numberOfMessages = 20;
 
-export const setNumberOfMessages = (type, value) => {
+export const setNumberOfMessages = (value) => {
   numberOfMessages = value;
 };
 
 export const getMessages =
-  (channelType, socket, channelId, type) => (dispatch) => {
+  (socket, channelId, type) => (dispatch) => {
     dispatch({ type: MESSAGES_LOADING });
     if (type === "loadOlder") {
       numberOfMessages += 20;
     }
+    console.log("1", numberOfMessages)
     socket.emit(
       "getMessages",
-      channelType,
       channelId,
       numberOfMessages
     );
@@ -39,7 +39,6 @@ export const getMessages =
 
 
 const sendFileMessages = async (
-  channelType,
   fileMessages,
   signData,
   dispatch
@@ -77,14 +76,11 @@ const sendFileMessages = async (
 };
 
 export const sendMessage =
-  (channelType, socket, channelId, text, fileMessages, replyOnMessage) =>
+  (socket, channelId, text, fileMessages) =>
     async (dispatch, getState) => {
       dispatch({
         type: MESSAGES_LOADING,
       });
-      const parentMsgId =
-        Object.keys(replyOnMessage).length !== 0 ? replyOnMessage._id : null;
-
       if (fileMessages.length) {
         const signResponse = await fetch(
           CLOUDINARY_SIGN_URL,
@@ -93,7 +89,6 @@ export const sendMessage =
         const signData = await signResponse.json();
         console.log(signData)
         let responses = await sendFileMessages(
-          channelType,
           fileMessages,
           signData,
           dispatch
@@ -101,25 +96,21 @@ export const sendMessage =
 
         socket.emit(
           "clientMessage",
-          channelType,
           channelId,
           text,
-          responses,
-          parentMsgId
+          responses
         );
       } else {
         socket.emit(
           "clientMessage",
-          channelType,
           channelId,
           text,
-          fileMessages,
-          parentMsgId
+          fileMessages
         );
       }
     };
 
-export const addMessage = (channelType, message) => (dispatch) => {
+export const addMessage = (message) => (dispatch) => {
   if (message) {
     dispatch({
       type: NEW_MESSAGE,
@@ -132,7 +123,7 @@ export const addMessage = (channelType, message) => (dispatch) => {
   }
 };
 
-export const setAllMessages = (channelType, messages) => (dispatch) => {
+export const setAllMessages = (messages) => (dispatch) => {
   dispatch({
     type: ALL_MESSAGES,
     payload: messages,
@@ -144,17 +135,15 @@ export const setAllMessages = (channelType, messages) => (dispatch) => {
 
 
 export const addEmojiReactionToMessage =
-  (channelType, socket, msg, emojiType, emojiName, toggleEmoji) =>
+  (socket, msg, emojiName, toggleEmoji) =>
     async (dispatch, getState) => {
       dispatch({
         type: MESSAGES_LOADING,
       });
       socket.emit(
         "clientEmojiReaction",
-        channelType,
         getState().groups.chosenChannel,
         msg._id,
-        emojiType,
         emojiName,
         toggleEmoji
       );
@@ -173,7 +162,6 @@ export const addEmojiReactionToMessage =
             {
               author: getState().auth.user._id,
               name: emojiName,
-              type: emojiType,
             },
           ];
         }
@@ -186,7 +174,7 @@ export const addEmojiReactionToMessage =
     };
 
 
-export const addMessageReaction = (channelType, message) => (dispatch) => {
+export const addMessageReaction = (message) => (dispatch) => {
   if (message) {
     dispatch({
       type: NEW_REACTION_MESSAGE,
@@ -200,7 +188,7 @@ export const addMessageReaction = (channelType, message) => (dispatch) => {
 };
 
 
-export const alreadyReacted = (channelType) => (dispatch) => {
+export const alreadyReacted = () => (dispatch) => {
   dispatch({
     type:
       ALREADY_REACTED_MESSAGE,

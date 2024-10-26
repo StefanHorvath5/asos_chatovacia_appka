@@ -7,8 +7,6 @@ const UserGroup = require("../models/UserGroup");
 const { asyncWrapper } = require("../middleware/async");
 const { createCustomError } = require("../errors/customError");
 
-// const { getChannels } = require("../mongoAggregates/channels");
-
 const createChannel = asyncWrapper(async (req, res, next) => {
     const user = await User.findOne({ _id: res.user._id });
     if (!user) {
@@ -34,8 +32,7 @@ const createChannel = asyncWrapper(async (req, res, next) => {
             { upsert: true }
         );
     }
-
-    // const channels = await getChannels(group._id, res.user._id);
+    
     res.status(200).json({
         success: true,
         channels: group.channels,

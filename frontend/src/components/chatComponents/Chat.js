@@ -50,17 +50,17 @@ const Chat = ({
   });
 
   useEffect(() => {
-    socket.on("serverMessage", (channelType, msg) => {
-      addMessage(channelType, msg);
+    socket.on("serverMessage", (msg) => {
+      addMessage(msg);
     });
-    socket.on("serverEmojiReaction", (channelType, msg) => {
-      addMessageReaction(channelType, msg);
+    socket.on("serverEmojiReaction", (msg) => {
+      addMessageReaction(msg);
     });
-    socket.on("alreadyReacted", (channelType) => {
-      alreadyReacted(channelType);
+    socket.on("alreadyReacted", () => {
+      alreadyReacted();
     });
-    socket.on("allMessages", (channelType, messages) => {
-      setAllMessages(channelType, messages);
+    socket.on("allMessages", (messages) => {
+      setAllMessages(messages);
     });
     return () => {
       socket.off("serverMessage");
@@ -236,10 +236,7 @@ const Chat = ({
 
 Chat.propTypes = {
   chosenChannel: PropTypes.string,
-
   addMessage: PropTypes.func.isRequired,
-  addEditMessage: PropTypes.func.isRequired,
-  addDeleteMessage: PropTypes.func.isRequired,
   addMessageReaction: PropTypes.func.isRequired,
   alreadyReacted: PropTypes.func.isRequired,
   setAllMessages: PropTypes.func.isRequired,

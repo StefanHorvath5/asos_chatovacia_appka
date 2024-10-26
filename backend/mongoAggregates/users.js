@@ -3,7 +3,6 @@ const Group = require("../models/Group");
 const UserGroup = require("../models/UserGroup");
 const UserChannel = require("../models/UserChannel");
 const Channel = require("../models/Channel");
-const Emoji = require("../models/Emoji");
 
 const getUserWithGroups = async (username) => {
   return await User.aggregate([
@@ -18,7 +17,6 @@ const getUserWithGroups = async (username) => {
               $expr: { $eq: ["$$uId", "$userId"] },
             },
           },
-          { $unwind: "$color" },
           {
             $lookup: {
               from: Group.collection.name,
@@ -54,13 +52,6 @@ const getUserWithGroups = async (username) => {
                                 },
                               },
                             },
-                            {
-                              $project: {
-                                _id: 0,
-                                lastRead: 1,
-                                notRead: 1,
-                              },
-                            },
                           ],
                           as: "userChannel",
                         },
@@ -71,22 +62,13 @@ const getUserWithGroups = async (username) => {
                     ],
                     as: "channels",
                   },
-                },
-                {
-                  $lookup: {
-                    from: Emoji.collection.name,
-                    localField: "emojis",
-                    foreignField: "_id",
-                    as: "emojis",
-                  },
-                },
+                }
               ],
               as: "group",
             },
           },
           {
             $project: {
-              color: 1,
               group: 1,
             },
           },

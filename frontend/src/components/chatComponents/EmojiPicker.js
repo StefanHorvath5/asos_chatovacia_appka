@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
 
 import { useClickAwayClose } from "../CustomComponents";
 
@@ -33,34 +32,17 @@ const defaultEmojis = [
   "🅱️",
 ];
 
-const EmojiPicker = ({ channelType, close, pickedEmoji, emojis }) => {
+const EmojiPicker = ({ close, pickedEmoji }) => {
   const wrapperRef = useRef(null);
   useClickAwayClose(wrapperRef, close);
   return (
     <div className="emojiPickerContainer" ref={wrapperRef}>
-      {channelType === 0 &&
-        emojis.map((emoji) => (
-          <div
-            className="oneEmojiContainer"
-            title={emoji.name}
-            onClick={(e) => {
-              if (emoji.file && emoji.name) {
-                pickedEmoji(1, emoji);
-                close();
-              } else {
-                close();
-              }
-            }}
-          >
-            <img src={emoji.file} alt="ne" width="24" />
-          </div>
-        ))}
       {defaultEmojis.map((em) => (
         <div
           className="oneEmojiContainer"
           title={em}
           onClick={(e) => {
-            pickedEmoji(0, em);
+            pickedEmoji(em);
             close();
           }}
         >
@@ -71,19 +53,5 @@ const EmojiPicker = ({ channelType, close, pickedEmoji, emojis }) => {
   );
 };
 
-EmojiPicker.propTypes = {
-  emojis: PropTypes.array.isRequired,
-};
 
-const mapStateToProps = (state) => {
-  if (state.groups.chosenGroup) {
-    return {
-      emojis: state.groups.chosenGroup.group.emojis,
-    };
-  } else {
-    return {
-      emojis: [],
-    };
-  }
-};
-export default connect(mapStateToProps, {})(EmojiPicker);
+export default connect(null, {})(EmojiPicker);

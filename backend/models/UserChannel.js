@@ -6,15 +6,7 @@ const UserChannelSchema = mongoose.Schema({
     ref: "Channel",
     required: true,
   },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  lastRead: {
-    type: Date,
-    default: Date.now,
-  },
-  notRead: {
-    type: Boolean,
-    default: false,
-  },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
 });
 UserChannelSchema.index({ channelId: 1, userId: 1 }, { unique: true });
 module.exports = mongoose.model("UserChannel", UserChannelSchema);

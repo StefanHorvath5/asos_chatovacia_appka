@@ -7,7 +7,6 @@ const {
     addReactionToMessage,
 } = require("./socketActions/messages");
 
-const { getGroups } = require("./mongoAggregates/groups");
 
 module.exports.sockets = (httpServer) => {
     const io = new Server(httpServer, {
@@ -22,7 +21,7 @@ module.exports.sockets = (httpServer) => {
     io.on("connection", (socket) => {
         socket.on(
             "clientMessage",
-            async (channelType, channelId, text, fileMessages, parentMsgId) => {
+            async (channelId, text, fileMessages, parentMsgId) => {
                 const newMsg = await addMessage(
                     socket,
                     channelId,
@@ -31,14 +30,12 @@ module.exports.sockets = (httpServer) => {
                     parentMsgId
                 );
                 if (newMsg.success) {
-                    io.in(channelId).emit("serverMessage", channelType, newMsg);
-                    if (channelType === 0) {
+                    io.in(channelId).emit("serverMessage", newMsg);
                         io.to(socket.data.groupOldId).emit(
                             "newUnread",
                             socket.data.groupOldId,
                             channelId
                         );
-                    }
                 } else {
                     socket.emit("errorOccured", newMsg.message);
                 }
@@ -48,10 +45,8 @@ module.exports.sockets = (httpServer) => {
         socket.on(
             "clientEmojiReaction",
             async (
-                channelType,
                 channelId,
                 msgId,
-                emojiType,
                 emojiName,
                 toggleEmoji
             ) => {
@@ -59,14 +54,12 @@ module.exports.sockets = (httpServer) => {
                     socket,
                     channelId,
                     msgId,
-                    emojiType,
                     emojiName,
                     toggleEmoji
                 );
                 if (newMessageWithReaction.success) {
                     io.in(channelId).emit(
                         "serverEmojiReaction",
-                        channelType,
                         newMessageWithReaction
                     );
                 } else {
@@ -78,12 +71,14 @@ module.exports.sockets = (httpServer) => {
 
         socket.on(
             "getMessages",
-            async (channelType, channelId, numberOfMessages) => {
+            async (channelId, numberOfMessages) => {
+                console.log("tu1", numberOfMessages)
                 const messages = await getMessages(
                     channelId,
                     numberOfMessages
                 );
-                socket.emit("allMessages", channelType, messages);
+                console.log("tu2")
+                socket.emit("allMessages", messages);
             }
         );
 

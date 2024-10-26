@@ -2,12 +2,10 @@ const Group = require("../models/Group");
 const UserGroup = require("../models/UserGroup");
 const Channel = require("../models/Channel");
 const UserChannel = require("../models/UserChannel");
-const Emoji = require("../models/Emoji");
 
 const getGroups = async (uId) => {
   return await UserGroup.aggregate([
     { $match: { userId: uId } },
-    { $unwind: "$color" },
     {
       $lookup: {
         from: Group.collection.name,
@@ -60,22 +58,13 @@ const getGroups = async (uId) => {
               ],
               as: "channels",
             },
-          },
-          {
-            $lookup: {
-              from: Emoji.collection.name,
-              localField: "emojis",
-              foreignField: "_id",
-              as: "emojis",
-            },
-          },
+          }
         ],
         as: "group",
       },
     },
     {
       $project: {
-        color: 1,
         group: 1,
       },
     },
@@ -83,21 +72,7 @@ const getGroups = async (uId) => {
   ]);
 };
 
-const getEmojisByGroupId = async (groupId) => {
-  return await Emoji.aggregate([
-    { $match: { group: groupId } },
-    {
-      $lookup: {
-        from: Emoji.collection.name,
-        localField: "emojis",
-        foreignField: "_id",
-        as: "emojis",
-      },
-    },
-  ]);
-};
 
 module.exports = {
-  getGroups,
-  getEmojisByGroupId,
+  getGroups
 };

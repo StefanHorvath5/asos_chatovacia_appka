@@ -40,7 +40,6 @@ const Chatting = ({
 }) => {
   const [disableActionsOnMessages, setDisableActionsOnMessages] =
     useState(false);
-  const [replyOnMessage, setReplyOnMessage] = useState({});
   let lastShowedUsernameIndex = 0;
 
   const checkShowAuthorUsername = (msg, i) => {
@@ -63,11 +62,11 @@ const Chatting = ({
     if (chosenChannel) {
       scrollToBottomRef.current.click();
     }
-    setNumberOfMessages(0, 20);
+    setNumberOfMessages(20);
   }, [chosenChannel, scrollToBottomRef]);
 
   useEffect(() => {
-    getMessages(0, socket, chosenChannel, "none");
+    getMessages(socket, chosenChannel, "none");
   }, [socket, chosenChannel, getMessages]);
 
   return (
@@ -75,7 +74,7 @@ const Chatting = ({
       <div
         className="loadOlderDiv"
         onClick={() => {
-          getMessages(0, socket, chosenChannel, "loadOlder");
+          getMessages(socket, chosenChannel, "loadOlder");
         }}
       >
         Load older
@@ -97,12 +96,10 @@ const Chatting = ({
             return (
               <div key={i}>
                 <Message
-                  channelType={0}
                   key={i}
                   socket={socket}
                   msg={msg}
                   setDisableActionsOnMessages={setDisableActionsOnMessages}
-                  setReplyOnMessage={setReplyOnMessage}
                   inputText={inputText}
                   showAuthorName={checkShowAuthorUsername(msg, i)}
                 />
@@ -114,13 +111,7 @@ const Chatting = ({
       <div>{fileMessageLoading && fileMessageLoading}</div>
       <div className="chattingMessageInput">
         <MessageInput
-          channelType={0}
           socket={socket}
-          replyOnMessage={replyOnMessage}
-          removeReplyOnMessage={() => {
-            setReplyOnMessage({});
-            inputText.current.focus();
-          }}
           inputText={inputText}
           setDisableActionsOnMessages={setDisableActionsOnMessages}
         />

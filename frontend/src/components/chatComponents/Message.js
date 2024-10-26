@@ -14,7 +14,6 @@ import dots from "../../images/dots.svg";
 import "../../css/Message.css";
 
 const Message = ({
-  channelType,
   socket,
   showAuthorName,
   msg,
@@ -30,7 +29,7 @@ const Message = ({
       e.pageY < 160 ? e.pageY - elem.y : e.pageY - elem.y - 135;
     setPickEmojiReactionState({
       state: true,
-      pageY: channelType === 1 ? 10 : currentPageY,
+      pageY: currentPageY,
     });
     setDisableActionsOnMessages(true);
   };
@@ -41,23 +40,20 @@ const Message = ({
           className="messageEmojiReactionsBox"
           style={{
             top: pickEmojiReactionState.pageY,
-            right: channelType === 0 ? 145 : 0,
+            right:  0,
             pointerEvents: "all",
           }}
         >
           <EmojiPicker
-            channelType={channelType}
             close={() => {
               setPickEmojiReactionState({});
               setDisableActionsOnMessages(false);
             }}
-            pickedEmoji={(emojiType, chosenEmoji) => {
+            pickedEmoji={(chosenEmoji) => {
               addEmojiReactionToMessage(
-                channelType,
                 socket,
                 msg,
-                emojiType,
-                emojiType === 0 ? chosenEmoji : chosenEmoji.name,
+                chosenEmoji ,
                 false
               );
               setPickEmojiReactionState({});
@@ -84,81 +80,29 @@ const Message = ({
       )}
       <div
         ref={messageContainer}
-        className={
-          msg.parent && Object.keys(msg.parent) !== 0
-            ? pickEmojiReactionState.state 
-              ? "messageContentWithReplyContainer messageClicked"
-              : "messageContentWithReplyContainer"
-            : pickEmojiReactionState.state 
+        className={ pickEmojiReactionState.state 
               ? "messageContentContainer messageClicked"
               : "messageContentContainer"
         }
         style={{
-          paddingLeft:
-            channelType === 1
-              ? 5
-              : msg.parent && Object.keys(msg.parent) !== 0
-                ? 0
-                : 30,
+          paddingLeft: 30,
         }}
         title={moment(msg.date).format("YYYY/MM/DD HH:mm:ss")}
       >
         <div
           className="messageContent"
-          style={{ maxWidth: channelType === 1 ? "70%" : "80%" }}
+          style={{ maxWidth: "80%" }}
 
         >
-          {msg.parent && Object.keys(msg.parent) !== 0 && (
-            <div className="parentMessageContainer">
-              <h4
-                className="authorName"
-                style={{
-                  color: "#9957db",
-                  flexShrink: 0,
-                }}
-              >
-                {msg.parent.author.username}
-                {" : "}
-              </h4>
-              <div
-                style={{
-                  paddingLeft: 20,
-                  flex: "1 1 auto",
-                  overflow: "hidden",
-                  maxWidth: "100%",
-                }}
-              >
-                <RenderFullMsg
-                  channelType={channelType}
-                  msg={msg.parent}
-                  socket={socket}
-                />
-              </div>
-            </div>
-          )}
           <div>
-            {msg.parent && Object.keys(msg.parent) !== 0 && (
-              <>
-                <h4
-                  className="authorName"
-                  style={{
-                    color: "#9957db",
-                  }}
-                >
-                  {msg.author.username}
-                </h4>
-                's reply:{" "}
-              </>
-            )}
+            
             <div
               style={{
-                paddingLeft:
-                  msg.parent && Object.keys(msg.parent) !== 0 ? 30 : 0,
+                paddingLeft: 0,
               }}
             >
 
               <RenderFullMsg
-                channelType={channelType}
                 msg={msg}
                 socket={socket}
               />
@@ -166,9 +110,7 @@ const Message = ({
           </div>
         </div>
         <small className="messageContentDate">
-          {channelType === 0
-            ? moment(msg.date).format("HH:mm:ss")
-            : moment(msg.date).format("HH:mm")}
+          {moment(msg.date).format("HH:mm:ss")}
         </small>
         <div
           className={pickEmojiReactionState.state

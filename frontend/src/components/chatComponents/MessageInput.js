@@ -12,9 +12,7 @@ import inputFileSvg from "../../images/inputFile.svg";
 import "../../css/MessageInput.css";
 
 const MessageInput = ({
-  channelType,
   socket,
-  replyOnMessage,
   inputText,
   setDisableActionsOnMessages,
   chosenChannel,
@@ -26,19 +24,6 @@ const MessageInput = ({
   const [pickEmojiState, setPickEmojiState] = useState(false);
 
   const messageChange = (text) => {
-    if (!message && text) {
-      socket.emit(
-        "typing",
-        channelType,
-        chosenChannel
-      );
-    } else if (message && !text) {
-      socket.emit(
-        "stoppedTyping",
-        channelType,
-        chosenChannel
-      );
-    }
     setMessage(text);
   };
 
@@ -101,12 +86,10 @@ const MessageInput = ({
               onKeyPress={(e) => {
                 if (e.key === "Enter" && (message || fileMessages.length)) {
                   sendMessage(
-                    channelType,
                     socket,
                     chosenChannel,
                     message,
-                    fileMessages,
-                    replyOnMessage
+                    fileMessages
                   );
                   messageChange("");
                   setFileMessages([]);
@@ -129,21 +112,17 @@ const MessageInput = ({
             {pickEmojiState && (
               <div
                 className="emojiBox"
-                style={{ right: channelType === 0 ? 10 : -35 }}
+                style={{ right:  10 }}
               >
                 <EmojiPicker
-                  channelType={channelType}
                   close={() => {
                     setPickEmojiState(false);
                     setDisableActionsOnMessages(false);
                     inputText.current.focus();
                   }}
-                  pickedEmoji={(emojiType, chosenEmoji) => {
-                    if (emojiType === 0) {
+                  pickedEmoji={(chosenEmoji) => {
                       messageChange(message + chosenEmoji + " ");
-                    } else {
-                      messageChange(message + ":" + chosenEmoji.name + ":");
-                    }
+                    
 
                     inputText.current.focus();
                   }}
@@ -173,12 +152,10 @@ const MessageInput = ({
               disabled={!(message || fileMessages)}
               onClick={() => {
                 sendMessage(
-                  channelType,
                   socket,
                   chosenChannel ,
                   message,
-                  fileMessages,
-                  replyOnMessage
+                  fileMessages
                 );
                 messageChange("");
                 setFileMessages([]);

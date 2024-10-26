@@ -13,7 +13,6 @@ const MessageSchema = new mongoose.Schema({
     default: Date.now,
   },
   channel: { type: mongoose.Schema.Types.ObjectId, ref: "Channel" },
-  parent: { type: mongoose.Schema.Types.ObjectId, ref: "Message" },
 
   emojiReactions: [
     { type: mongoose.Schema.Types.ObjectId, ref: "EmojiReaction" },

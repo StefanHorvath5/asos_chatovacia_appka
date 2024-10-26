@@ -33,7 +33,7 @@ const getMessages = asyncWrapperNormalFuctions(
 );
 
 const addMessage = asyncWrapperNormalFuctions(
-    async (socket, channelId, text, fileMessages, parentMsgId) => {
+    async (socket, channelId, text, fileMessages) => {
         const author = socket.data.user;
         if (!(fileMessages || text)) {
             return {
@@ -48,9 +48,6 @@ const addMessage = asyncWrapperNormalFuctions(
         });
         if (text) {
             newMessage.text = text;
-        }
-        if (parentMsgId) {
-            newMessage.parent = parentMsgId;
         }
         const msg = await newMessage.save();
         if (fileMessages) {
@@ -93,13 +90,12 @@ const addMessage = asyncWrapperNormalFuctions(
 
 
 const addReactionToMessage = asyncWrapperNormalFuctions(
-    async (socket, channelId, msgId, emojiType, emojiName, toggleEmoji) => {
+    async (socket, channelId, msgId, emojiName, toggleEmoji) => {
         const author = socket.data.user._id;
         const message = await Message.findById(msgId);
         const getMessageReaction = await EmojiReaction.findOne({
             author: author,
             messageId: message._id,
-            type: emojiType,
             name: emojiName,
         });
 
@@ -117,7 +113,6 @@ const addReactionToMessage = asyncWrapperNormalFuctions(
             const newMessageReaction = new EmojiReaction({
                 author: author,
                 name: emojiName,
-                type: emojiType,
                 messageId: message._id,
             });
             const reaction = await newMessageReaction.save();

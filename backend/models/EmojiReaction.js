@@ -2,11 +2,6 @@ const mongoose = require("mongoose");
 
 const EmojiReactionSchema = new mongoose.Schema({
   author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  type: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
   name: {
     type: String,
     required: true,

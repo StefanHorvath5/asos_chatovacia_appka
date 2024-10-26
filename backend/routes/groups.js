@@ -18,6 +18,4 @@ router.post("/addToGroup", authMiddleware, addToGroup);
 router.get("/getAllGroups", authMiddleware, getAllGroups);
 router.get("/:id", authMiddleware, getGroupById);
 
-router.post("/createEmoji", authMiddleware, createEmoji);
-
 module.exports = router;
