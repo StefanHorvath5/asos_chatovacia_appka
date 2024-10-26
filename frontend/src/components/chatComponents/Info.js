@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 
-import "../../css/Info.css";
-
 const Info = ({
   socket,
   logout,

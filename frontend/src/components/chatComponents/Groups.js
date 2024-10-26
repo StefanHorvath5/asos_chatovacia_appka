@@ -7,7 +7,6 @@ import {
   getOldGroup
 } from "../../actions/groups";
 
-import "../../css/Groups.css";
 
 const Groups = ({
   socket,

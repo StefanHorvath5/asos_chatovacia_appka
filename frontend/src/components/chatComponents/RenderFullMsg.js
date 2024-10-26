@@ -7,8 +7,6 @@ import { addEmojiReactionToMessage } from "../../actions/messages";
 
 import MessageText from "./MessageText";
 
-import "../../css/RenderFullMsg.css";
-
 export const RenderFullMsgNotConnected = ({
   socket,
   msg,

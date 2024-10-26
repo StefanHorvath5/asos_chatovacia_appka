@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 
 import { useClickAwayClose } from "../CustomComponents";
 
-import "../../css/EmojiPicker.css";
-
 const defaultEmojis = [
   "🙃",
   "😀",

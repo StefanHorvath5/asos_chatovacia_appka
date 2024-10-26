@@ -9,7 +9,6 @@ import EmojiPicker from "./EmojiPicker";
 import { RenderFullMsg } from "./RenderFullMsg";
 
 import emoji from "../../images/emoji.svg";
-import dots from "../../images/dots.svg";
 
 import "../../css/Message.css";
 
@@ -126,14 +125,6 @@ const Message = ({
             }}
           >
             <img src={emoji} alt="Emoji" width="24" />
-          </button>
-          <button
-            className="messageButton"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <img src={dots} alt="..." width="24" />
           </button>
         </div>
       </div>

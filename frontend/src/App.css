@@ -20,3 +20,83 @@ li {
 .actionIcon {
   cursor: pointer;
 }
+
+
+/* Header */
+.headerContainer {
+  padding: 20px;
+}
+
+.headerLink {
+  padding-right: 15px;
+}
+
+.authenticatedContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+/* Home */
+.homeContainer {
+  height: 100%;
+}
+.disabledHome {
+  pointer-events: none;
+}
+
+.homeOpacityLayerContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: none !important;
+  pointer-events: none;
+  z-index: 1000;
+}
+.homeOpacityLayer {
+  opacity: 0.85;
+  background-color: #000000;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+
+/* Alert */
+.alertContainer {
+  position: absolute;
+  z-index: 5;
+  bottom: 10px;
+  left: 10px;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+.removeAlertButton {
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+
+/* RegisterLogin */
+.registerContainer,
+.loginContainer {
+  display: flex;
+  justify-content: center;
+}
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+.buttonContainer {
+  margin-top: 15px;
+}

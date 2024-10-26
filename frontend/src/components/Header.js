@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 
 import { CustomLink } from "./CustomComponents";
 
-import "../css/Header.css";
-
 const Header = ({ isAuthenticated }) => {
   return (
     <div className="headerContainer">

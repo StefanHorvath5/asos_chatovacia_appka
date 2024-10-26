@@ -6,8 +6,6 @@ import { setCurrentChannel, getOldChannel } from "../../actions/channels";
 
 import s from "../../images/settings.svg";
 
-import "../../css/Channels.css";
-
 const Channels = ({
   socket,
   setModalChannelState,

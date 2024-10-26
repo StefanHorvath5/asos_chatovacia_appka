@@ -17,8 +17,6 @@ import {
   GroupSettingsModal,
 } from "./modals";
 
-import "../css/Home.css";
-
 let socket;
 
 function Home({

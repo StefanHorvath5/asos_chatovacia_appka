@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import "../../css/MessageText.css";
-
 const URL_REGEX1 =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
 const URL_REGEX2 =

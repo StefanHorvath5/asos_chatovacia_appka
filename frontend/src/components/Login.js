@@ -7,8 +7,6 @@ import { login } from "../actions/auth";
 
 import { InputContainer } from "./CustomComponents";
 
-import "../css/RegisterLogin.css";
-
 const Login = ({ isAuthenticated, login }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

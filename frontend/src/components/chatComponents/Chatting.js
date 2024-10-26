@@ -11,8 +11,6 @@ import { getMessages, setNumberOfMessages } from "../../actions/messages";
 import Message from "./Message";
 import MessageInput from "./MessageInput";
 
-import "../../css/Chatting.css";
-
 const ScrollToBottomButtons = ({ scrollToBottomRef, scrollToTopRef }) => {
   const scrollToBottom = useScrollToBottom();
   const scrollToTop = useScrollToTop();

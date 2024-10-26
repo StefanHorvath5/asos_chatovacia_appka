@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 
 import { removeAlert } from "../actions/alerts";
 
-import "../css/Alert.css";
-
 const Alert = ({ alertMessage, alertVariant, removeAlert }) => {
   const [colorVariant, setColorVariant] = useState("red");
   useEffect(() => {
