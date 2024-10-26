@@ -38,7 +38,7 @@ export const dispatchError = (err) => (dispatch) => {
   }
 };
 
-export const getCloudinaryUrlAndFormData = (type, signData, fileMessage) => {
+export const getCloudinaryUrlAndFormData = (signData, fileMessage) => {
   const url =
     "https://api.cloudinary.com/v1_1/" +
     signData.cloudname +

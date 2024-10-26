@@ -50,7 +50,6 @@ const sendFileMessages = async (
     });
 
     const { url, data } = getCloudinaryUrlAndFormData(
-      "auto",
       signData,
       fileMessages[i]
     );
