@@ -8,8 +8,8 @@ import ScrollToBottom, {
 
 import { getMessages, setNumberOfMessages } from "../../actions/messages";
 
-import Message from "./Message";
-import MessageInput from "./MessageInput";
+import Message from "../messages/Message";
+import MessageInput from "../messages/MessageInput";
 
 const ScrollToBottomButtons = ({ scrollToBottomRef, scrollToTopRef }) => {
   const scrollToBottom = useScrollToBottom();

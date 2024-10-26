@@ -5,12 +5,12 @@ import moment from "moment";
 
 import { addEmojiReactionToMessage } from "../../actions/messages";
 
-import EmojiPicker from "./EmojiPicker";
+import EmojiPicker from "../common/EmojiPicker";
 import { RenderFullMsg } from "./RenderFullMsg";
 
 import emoji from "../../images/emoji.svg";
 
-import "../../css/Message.css";
+import "./Message.css";
 
 const Message = ({
   socket,

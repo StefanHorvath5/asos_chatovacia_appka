@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 
 import { sendMessage } from "../../actions/messages";
 
-import EmojiPicker from "./EmojiPicker";
+import EmojiPicker from "../common/EmojiPicker";
 
 import emojiSvg from "../../images/emoji.svg";
 import inputFileSvg from "../../images/inputFile.svg";
 
-import "../../css/MessageInput.css";
+import "./MessageInput.css";
 
 const MessageInput = ({
   socket,

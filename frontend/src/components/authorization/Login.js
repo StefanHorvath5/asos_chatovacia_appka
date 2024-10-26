@@ -3,15 +3,15 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Navigate } from "react-router-dom";
 
-import { register } from "../actions/auth";
+import { login } from "../../actions/auth";
 
-import { InputContainer } from "./CustomComponents";
+import { InputContainer } from "../common/CustomComponents";
 
-const Register = ({ isAuthenticated, register }) => {
+const Login = ({ isAuthenticated, login }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
-    <div className="registerContainer">
+    <div className="loginContainer">
       {isAuthenticated && <Navigate to="/home" />}
       <div className="formContainer">
         <InputContainer>
@@ -37,7 +37,7 @@ const Register = ({ isAuthenticated, register }) => {
             onChange={(e) => setPassword(e.target.value)}
             onKeyPress={(e) => {
               if (e.key === "Enter" && username && password) {
-                register(username, password);
+                login(username, password);
               }
             }}
           />
@@ -46,10 +46,10 @@ const Register = ({ isAuthenticated, register }) => {
           <button
             disabled={!username || !password}
             onClick={() => {
-              register(username, password);
+              login(username, password);
             }}
           >
-            Register
+            Log In
           </button>
         </div>
       </div>
@@ -57,9 +57,8 @@ const Register = ({ isAuthenticated, register }) => {
   );
 };
 
-// Redux and default export
-Register.propTypes = {
-  register: PropTypes.func.isRequired,
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
 
@@ -67,4 +66,4 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { register })(Register);
+export default connect(mapStateToProps, { login })(Login);

@@ -3,21 +3,20 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate,
 } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { loadUser } from "./actions/auth";
 
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/authorization/PrivateRoute";
 
-import Register from "./components/Register";
-import Login from "./components/Login";
+import Register from "./components/authorization/Register";
+import Login from "./components/authorization/Login";
 import Home from "./components/Home";
-import Header from "./components/Header";
-import JoinGroup from "./components/JoinGroup";
-import Alert from "./components/Alert";
+import Header from "./components/common/Header";
+import JoinGroup from "./components/group/JoinGroup";
+import Alert from "./components/common/Alert";
 
 import "./App.css";
 

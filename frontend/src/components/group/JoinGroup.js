@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-import { addToGroup, getGroupById } from "../actions/groups";
+import { addToGroup, getGroupById } from "../../actions/groups";
 import { useParams } from 'react-router-dom';
-import Header from "./Header";
+import Header from "../common/Header";
 
 const JoinGroup = ({ addToGroup, getGroupById }) => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
 
-import { useClickAwayClose } from "../CustomComponents";
+import { useClickAwayClose } from "./CustomComponents";
 
 const defaultEmojis = [
   "🙃",

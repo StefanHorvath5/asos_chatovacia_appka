@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import Groups from "./Groups";
-import Channels from "./Channels";
+import Groups from "../group/Groups";
+import Channels from "../channels/Channels";
 import Chatting from "./Chatting";
-import Info from "./Info";
-import { useClickAwayClose } from "../CustomComponents";
+import Info from "../common/Info";
+import { useClickAwayClose } from "../common/CustomComponents";
 
 import {
   addMessage,
@@ -18,7 +18,7 @@ import {
 import peopleSvg from "../../images/people.svg";
 import hamburgerSvg from "../../images/hamburger.svg";
 
-import "../../css/Chat.css";
+import "./Chat.css";
 
 const Chat = ({
   socket,

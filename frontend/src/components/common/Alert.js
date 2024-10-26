@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { removeAlert } from "../actions/alerts";
+import { removeAlert } from "../../actions/alerts";
 
 const Alert = ({ alertMessage, alertVariant, removeAlert }) => {
   const [colorVariant, setColorVariant] = useState("red");

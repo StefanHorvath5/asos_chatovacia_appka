@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { frontendUrl } from "../urls";
+import { frontendUrl } from "../../urls";
 
 import {
   addToGroup,
   createGroup,
-} from "../actions/groups";
-import { createChannel } from "../actions/channels";
+} from "../../actions/groups";
+import { createChannel } from "../../actions/channels";
 
 import {
   ModalContainer,
@@ -17,7 +17,7 @@ import {
   InputContainer,
 } from "./CustomComponents";
 
-import "../css/modals.css";
+import "./modals.css";
 
 const GroupModalNotConnected = ({
   matches768,

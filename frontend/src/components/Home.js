@@ -10,12 +10,12 @@ import { api } from "../urls";
 import { getAllGroups } from "../actions/groups";
 import { createAlert } from "../actions/alerts";
 
-import Chat from "./chatComponents/Chat";
+import Chat from "./chat/Chat";
 import {
   GroupModal,
   ChannelModal,
   GroupSettingsModal,
-} from "./modals";
+} from "./common/modals";
 
 let socket;
 

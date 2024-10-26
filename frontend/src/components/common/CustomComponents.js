@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import "../css/CustomComponents.css";
+import "./CustomComponents.css";
 
 export const CustomLink = ({ className, ...rest }) => {
   const classes = `customLink ${className}`;
