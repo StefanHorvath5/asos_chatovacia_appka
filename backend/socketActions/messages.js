@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Message = require("../models/Message");
-const UserChannel = require("../models/UserChannel");
 const MessageFile = require("../models/MessageFile");
 
 const { asyncWrapperNormalFuctions } = require("../middleware/async");
@@ -73,10 +72,6 @@ const addMessage = asyncWrapperNormalFuctions(
         const returnMsg = await getMessageAggregate(
             new mongoose.Types.ObjectId(channelId),
             msg._id
-        );
-        await UserChannel.updateMany(
-            { channelId: channelId, userId: { $ne: author._id } },
-            { $set: { notRead: true } }
         );
 
         return {

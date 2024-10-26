@@ -1,7 +1,6 @@
 const Group = require("../models/Group");
 const UserGroup = require("../models/UserGroup");
 const Channel = require("../models/Channel");
-const UserChannel = require("../models/UserChannel");
 
 const getGroups = async (uId) => {
   return await UserGroup.aggregate([
@@ -25,35 +24,6 @@ const getGroups = async (uId) => {
                   $match: {
                     $expr: { $in: ["$_id", "$$channels"] },
                   },
-                },
-                {
-                  $lookup: {
-                    let: { channelId: "$_id" },
-                    from: UserChannel.collection.name,
-                    pipeline: [
-                      {
-                        $match: {
-                          $expr: {
-                            $and: [
-                              { $eq: ["$channelId", "$$channelId"] },
-                              { $eq: ["$userId", uId] },
-                            ],
-                          },
-                        },
-                      },
-                      {
-                        $project: {
-                          _id: 0,
-                          lastRead: 1,
-                          notRead: 1,
-                        },
-                      },
-                    ],
-                    as: "userChannel",
-                  },
-                },
-                {
-                  $unwind: "$userChannel",
                 },
               ],
               as: "channels",
