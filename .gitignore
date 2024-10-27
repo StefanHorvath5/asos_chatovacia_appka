@@ -2,6 +2,7 @@
 .env
 id_rsa_priv.pem
 
+.idea/
 
 
 # dependencies
