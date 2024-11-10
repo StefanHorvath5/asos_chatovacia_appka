@@ -1,0 +1,52 @@
+services:
+  backend:
+    build:
+      target: node-base
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+      args:
+        BASE_PROJECT_DIR: ${BASE_PROJECT_DIR}
+    env_file:
+      - .env
+    volumes:
+      - ./backend:${BASE_PROJECT_DIR}
+    ports:
+      - "${PORT}:${PORT}"
+    command: >
+      sh -c "npm install && npm start"
+  frontend:
+    build:
+      target: node-base
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+      args:
+        BASE_PROJECT_DIR: ${BASE_PROJECT_DIR}
+    env_file:
+      - .env
+    volumes:
+      - ./frontend:${BASE_PROJECT_DIR}
+    ports:
+      - "8080:3000"
+    command: >
+      sh -c "npm install && npm start"
+  mongodb:
+    build:
+      target: mongodb
+      context: .
+      dockerfile: ./docker/mongo/Dockerfile
+    environment:
+      # todo: why env_file: .env not work - retry this lebo asi som sa len ojebal
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - ${MONGO_PORT}:${MONGO_PORT}
+  mongo-express:
+    build:
+      target: mongo-exp
+      context: .
+      dockerfile: ./docker/mongo/Dockerfile
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: ${MONGO_URL}
+      ME_CONFIG_BASICAUTH: false

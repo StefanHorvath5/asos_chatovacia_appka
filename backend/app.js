@@ -37,7 +37,7 @@ app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
-    await connectDB(process.env.MONGO_URI);
+    await connectDB(process.env.MONGO_URL);
 
     httpServer.listen(app.get("port"), () =>
       console.log(`Server has started on port ${PORT}`)

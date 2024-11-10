@@ -1,0 +1,5 @@
+FROM node:18-alpine AS node-base
+
+ARG BASE_PROJECT_DIR
+WORKDIR $BASE_PROJECT_DIR
+USER node
