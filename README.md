@@ -1,12 +1,15 @@
 # asos_chatovacia_appka
 
+## Update .env file
 
-## To run the application
+- run <pre>cp .env.example .env</pre>
+- Adjust .env keys
 
-### Update .env file
+## Docker setup
+### Docker
+- run <pre>docker compose up -d</pre>
 
-copy content of `exampleenv.txt` to `.env` file and set the values
-
+## Non-docker setup
 ### Backend
 
 - move to backend directory from top directory: 
